@@ -30,8 +30,7 @@ import {FooterComponent} from "./components/footer/index";
 import {NavbarExtendedComponent} from "./components/navbarExtended/index";
 import {StockTableComponent} from "./components/stockTable/index";
 import {NotificationComponent} from "./components/notification/index";
-import {PushNotificationsModule, SimpleNotificationsModule} from "angular2-notifications/dist";
-import {DataTableModule} from "angular-2-data-table/dist";
+
 
 
 @NgModule({
@@ -42,9 +41,6 @@ import {DataTableModule} from "angular-2-data-table/dist";
     HttpModule,
     RouterModule,
     routing,
-    DataTableModule,
-    PushNotificationsModule,
-    SimpleNotificationsModule
   ],
   providers: [
     AppConfig,

@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {DataTableResource, DataTable, DataTableTranslations} from "angular-2-data-table";
+
 import {StockService} from "../../services/stock.service";
 @Component({
   moduleId: module.id,
@@ -12,12 +12,11 @@ export class StockTableComponent {
 
   id: number;
   data: any;
-  stockResource = new DataTableResource(null);
+
   stocks:any = [];
   stockCount:number= 0;
   serviceLoaded: boolean = false;
 
-  @ViewChild(DataTable) stocksTable: any;
 
   constructor(private _stockService: StockService) {
     this.id = JSON.parse(localStorage.getItem('currentUser'))['_id'];
@@ -29,8 +28,6 @@ export class StockTableComponent {
           data => {
             this.data = this.transformData(data);
             console.log(this.data);
-            this.stockResource = new DataTableResource(this.data);
-            this.stockResource.count().then(count => this.stockCount = count);
             this.serviceLoaded = true;
           },
           err => {
@@ -77,18 +74,4 @@ export class StockTableComponent {
     return -1;
   }
 
-  reloadStocks(params:any) {
-    console.log(this.stockResource);
-    this.stockResource.query(params).then(stocks => this.stocks = stocks);
-  }
-
-  // special params:
-
-  translations = <DataTableTranslations>{
-    indexColumn: 'Index column',
-    expandColumn: 'Expand column',
-    selectColumn: 'Select column',
-    paginationLimit: 'Max results',
-    paginationRange: 'Result range'
-  };
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {GoogleFinanceService} from "../../services/googleFinance.service";
 import {UserService} from "../../services/user.service";
-import {PushNotificationsService} from "angular2-notifications/dist/index";
+
 
 @Component({
   moduleId: module.id,
@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   constructor(
     private _userService : UserService,
     private _googleFinance: GoogleFinanceService,
-    private _pushNotifications: PushNotificationsService
+
   ){
   }
 
@@ -105,15 +105,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   }
 
   handlePushNotifications(){
-    if(!this._pushNotifications.isSupported()){
-      return;
-    }
-    if(this.portfolio.revenue < 0){
-      this._pushNotifications.create("Revenue changed", {
-        body: 'Your current revenue is: ' + this.portfolio.revenue +"! Which is below your threshold.",
-        icon: 'http://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2014/10/03/102058445-up-down-chart.530x298.jpg?v=1412369312'
-      }).subscribe(console.log("sent!"));
-    }
+
 
   }
 }
