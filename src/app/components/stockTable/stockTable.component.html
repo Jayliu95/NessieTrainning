@@ -1,0 +1,63 @@
+<!-- main app container -->
+<div class="wrapper">
+  <navbar></navbar>
+  <div class="main-panel">
+    <navbarExtended></navbarExtended>
+    <div class="content">
+      <div class="container-fluid">
+        <!--ng2-data table example -->
+        <div class="row" *ngIf="serviceLoaded" >
+          <div class="col-md-12">
+            <div class="card" style="padding: 25px 25px 25px 25px;">
+              <data-table id="stocks-grid"
+                          headerTitle="Stocks table"
+                          [items]="stocks"
+                          [itemCount]="stockCount"
+                          (reload)="reloadStocks($event)"
+
+                          [limit]="8"
+                          [sortBy]="'rating'"
+                          [sortAsc]="false"
+
+                          [substituteRows]="false"
+                          [expandableRows]="true"
+                          [translations]="translations"
+                          [indexColumnHeader]="'#'"
+              >
+                <ng-template #dataTableExpand let-item="item">
+                  <div *ngFor="let stock of item.detail" style="padding: 5px; color: gray">
+                    <h6>{{stock.shareCount}} share(s) purchased @ {{stock.purchasePrice}}</h6>
+                  </div>
+                </ng-template>
+                <data-table-column
+                  [property]="'stockSymbol'"
+                  [header]="'stockSymbol'"
+                  [sortable]="true">
+                </data-table-column>
+                <data-table-column
+                  [property]="'totalShareCount'"
+                  [header]="'Share Count'"
+                  [sortable]="true">
+                </data-table-column>
+                <data-table-column
+                  [property]="'totalInvested'"
+                  [header]="'Invested'"
+                  [sortable]="true">
+                </data-table-column>
+
+              </data-table>
+
+              <!-- Issue with current design. TODO: add back if necessary - no need at the moment
+              <div style="margin-top: 10px">
+                <b>Selected:</b>
+                <span *ngIf="filmsTable.selectedRow == null"><i>No item selected</i></span>
+                <span [textContent]="filmsTable.selectedRow && filmsTable.selectedRow.item.title"></span>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer-template></footer-template>
+  </div>
+</div>

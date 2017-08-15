@@ -1,0 +1,47 @@
+<div class="sidebar" data-background-color="white" data-active-color="danger">
+
+  <!--
+      Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+      Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+  -->
+
+  <div class="sidebar-wrapper">
+    <div class="logo">
+      <a href="https://github.com/Jayliu95/" class="simple-text">
+        Jason's Stock Watcher
+      </a>
+    </div>
+    <ul class="nav">
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/" >
+          <i class="ti-panel"></i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/user" >
+          <i class="ti-user"></i>
+          <p>User Profile</p>
+        </a>
+      </li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/stocktable">
+          <i class="ti-view-list-alt"></i>
+          <p>Owned Stocks</p>
+        </a>
+      </li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/notification">
+          <i class="ti-bell"></i>
+          <p>Notifications</p>
+        </a>
+      </li>
+      <li class="active-pro" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/donate">
+          <i class="ti-export"></i>
+          <p>Donate</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
