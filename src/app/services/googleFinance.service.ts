@@ -13,10 +13,10 @@ export class GoogleFinanceService{
   constructor(private _http: Http){}
 
   getStockData(req: string){
-    return this._http.get(req)
+    return this._http.get('/api/v1/finance', {params: {url: JSON.stringify(req)}})
       .map((response: Response) =>
-     JSON.parse(response['_body'].toString().substring(3,response['_body'].toString()._length))
-    );
+      response.json()
+      );
   }
 }
 

@@ -75,7 +75,10 @@ function addStock(req){
     }
 
     if (user) {
-      var set:any = {};
+      let set:any = {};
+      if(user['stockPortfolio'] == null){
+        user['stockPortfolio'] = [];
+      }
       set.stockPortfolio = user['stockPortfolio'];
       set.stockPortfolio.push(req['stock']);
       /*TODO: resolve when no longer needed
