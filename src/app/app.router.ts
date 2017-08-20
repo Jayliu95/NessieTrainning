@@ -8,6 +8,7 @@ import {RegisterComponent} from "./components/register/index";
 import {AuthGuard} from "./guards/index";
 import {DonateComponent} from "./components/donate/index";
 import {NotificationComponent} from "./components/notification/notification.component";
+import {RobinHoodComponent} from "./components/robinhood/robinhood.component";
 
 const appRoutes: Routes = [
   {
@@ -42,6 +43,11 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'robinhood',
+    component: RobinHoodComponent,
     pathMatch: 'full'
   },
   {

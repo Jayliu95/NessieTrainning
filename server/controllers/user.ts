@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var userService = require('../services/user.service.js');
+var userService = require('../services/user.service');
 
 // routes
 router.post('/authenticate', authenticateUser);
 router.post('/', register);
 router.get('/', getAllUsers);
 router.get('/:id', getUserById);
-router.get('/names/:id', getUserByName)
+router.get('/names/:id', getUserByName);
 router.put('/:_id', updateUser);
 router.delete('/:_id', deleteUser);
 

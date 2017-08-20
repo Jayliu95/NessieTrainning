@@ -30,6 +30,7 @@ import {FooterComponent} from "./components/footer/index";
 import {NavbarExtendedComponent} from "./components/navbarExtended/index";
 import {StockTableComponent} from "./components/stockTable/index";
 import {NotificationComponent} from "./components/notification/index";
+import {RobinHoodComponent} from "./components/robinhood/robinhood.component";
 
 
 
@@ -54,6 +55,7 @@ import {NotificationComponent} from "./components/notification/index";
   declarations:
     [ AppComponent,
       UserProfileComponent,
+      RobinHoodComponent,
       DisplayComponent,
       DashboardComponent,
       StockTableComponent,

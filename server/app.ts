@@ -9,6 +9,7 @@ var index = require('./controllers/index');
 var user  = require('./controllers/user');
 var stock = require('./controllers/stock');
 var finance = require('./controllers/finance');
+var robinhood = require('./controllers/robinhood');
 const app: express.Application = express();
 
 app.disable("x-powered-by");
@@ -18,6 +19,7 @@ app.use(compression());
 app.use(urlencoded({ extended: true }));
 
 // api routes
+app.use('/api/v1/robinhood', robinhood);
 app.use('/api/v1/finance', finance);
 app.use('/api/v1/users', user);
 app.use('/api/v1/:id/stocks', stock);
