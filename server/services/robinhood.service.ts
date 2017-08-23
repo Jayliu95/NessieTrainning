@@ -8,22 +8,37 @@ let Robinhood = robinhoodModule(robinSecret, function(){
   console.log("connected to robinhood profile");
 });
 
-var service:any = {};
+
+//Service Object being exported to be consumed by RobinHood Controller
+let service:any = {};
 service.getProfile = getProfile;
+service.getAccount = getAccount;
 
 module.exports = service;
 
 function getProfile() {
-  console.log("currently working on it");
   let deferred = Q.defer();
   Robinhood.investment_profile(function(err, response, body){
     if(err){
       deferred.reject(err.name + ': ' + err.message);
     }else {
       console.log("investment_profile");
-      console.log(body);
       deferred.resolve((body));
     }
   });
   return deferred.promise;
 }
+
+function getAccount(){
+  let deferred = Q.defer();
+  Robinhood.accounts(function(err, response, body){
+    if(err){
+      deferred.reject(err.name + ': ' + err.message);
+    }else {
+      console.log("investment_account");
+      deferred.resolve((body));
+    }
+  });
+  return deferred.promise;
+}
+
