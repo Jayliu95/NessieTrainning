@@ -7,7 +7,6 @@ import * as mongo from "mongojs";
 import {mongoSecret} from "../config";
 let db = mongo(mongoSecret.mlabKey, [mongoSecret.collection]);
 
-
 var service:any = {};
 
 service.authenticate = authenticate;

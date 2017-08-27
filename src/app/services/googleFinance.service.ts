@@ -15,7 +15,7 @@ export class GoogleFinanceService{
   getStockData(req: string){
     return this._http.get('/api/v1/finance', {params: {url: JSON.stringify(req)}})
       .map((response: Response) =>
-      response.json()
+        response.json()
       );
   }
 }
