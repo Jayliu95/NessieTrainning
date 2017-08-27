@@ -61,42 +61,39 @@ function getOrders(){
 }
 
 //Get information about stock -> return's object that contains url
-function getInstruments(){
+function getInstruments(req){
+
+  //Validating that stock symbol is passed as a param
+    console.log(req.query.stockSymbol);
+
+
   let deferred = Q.defer();
-  Robinhood.instruments('AMMA',function(err, response, body){
+  Robinhood.instruments(req.query.stockSymbol, function(err, response, body){
     if(err){
       deferred.reject(err.name + ': ' + err.message);
     }else {
-      console.log("instruments");
       deferred.resolve((body));
     }
   });
   return deferred.promise;
 }
 
-
-//Needs Some Work.
-// you need to call instrument first, get data such as url, and the pass it in the buy function.
-function buyOrder(){
-  var options = {
-    type: 'limit',
-    quantity: 1,
-    bid_price: 1.00,
+function buyOrder(req){
+  let options = {
+    type: req.query.type,
+    quantity: req.query.quantity,
+    bid_price: req.query.bid_price,
     instrument: {
-      url: 'https://api.robinhood.com/instruments/f020f8c9-329a-4075-831b-37a187493a7a/',
-      symbol: 'AMMA'
+      url: req.query.url,
+      symbol: req.query.symbol
     }
-    // // Optional:
-    // trigger: String, // Defaults to "gfd" (Good For Day)
-    // time: String,    // Defaults to "immediate"
-    // type: String     // Defaults to "market"
-  }
+  };
   let deferred = Q.defer();
-  Robinhood.place_buy_order(options,function(err, response, body){
+  Robinhood.place_buy_order(options, function(err, response, body){
     if(err){
       deferred.reject(err.name + ': ' + err.message);
     }else {
-      console.log("Place a Buy Order");
+      console.log("Successfully executed a buy order");
       deferred.resolve((body));
     }
   });

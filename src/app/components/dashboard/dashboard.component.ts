@@ -2,7 +2,6 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {GoogleFinanceService} from "../../services/googleFinance.service";
 import {UserService} from "../../services/user.service";
 
-
 @Component({
   moduleId: module.id,
   selector: 'dashboard',

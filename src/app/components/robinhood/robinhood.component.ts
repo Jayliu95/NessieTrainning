@@ -5,9 +5,11 @@ import {User} from "../../models/user";
 import {Stock} from '../../models/stock';
 import {StockService} from "../../services/stock.service";
 import {GoogleFinanceService} from "../../services/googleFinance.service";
+import {RobinhoodService} from "../../services/robinhood.service";
 @Component({
   moduleId: module.id,
   templateUrl: 'robinhood.component.html',
+
 })
 
 export class RobinHoodComponent implements OnInit, OnDestroy{
@@ -24,7 +26,8 @@ export class RobinHoodComponent implements OnInit, OnDestroy{
   constructor(
     private _userService: UserService,
     private _stockService: StockService,
-    private _googleFinance: GoogleFinanceService
+    private _googleFinance: GoogleFinanceService,
+    private _robinhood: RobinhoodService
   ){}
 
   ngOnInit(){
@@ -175,6 +178,23 @@ export class RobinHoodComponent implements OnInit, OnDestroy{
    * Notification Preference Related Functions
    */
   updateNotificationPreference() {
+  }
+
+
+
+
+
+  //Testing BackEnd
+  getAccountRobin(){
+    console.log("get Account got called");
+    this._robinhood.getAccountInfo()
+      .subscribe(
+        data => {
+          console.log(data)
+        },
+        error => {
+          console.log(error);
+        });
   }
 
 }

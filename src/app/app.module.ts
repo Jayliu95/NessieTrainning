@@ -31,6 +31,7 @@ import {NavbarExtendedComponent} from "./components/navbarExtended/index";
 import {StockTableComponent} from "./components/stockTable/index";
 import {NotificationComponent} from "./components/notification/index";
 import {RobinHoodComponent} from "./components/robinhood/robinhood.component";
+import {RobinhoodService} from "./services/robinhood.service";
 
 
 
@@ -50,7 +51,8 @@ import {RobinHoodComponent} from "./components/robinhood/robinhood.component";
     UserService,
     StockService,
     AuthGuard,
-    AlertService
+    AlertService,
+    RobinhoodService
   ],
   declarations:
     [ AppComponent,

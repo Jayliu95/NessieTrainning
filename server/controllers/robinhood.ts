@@ -7,11 +7,16 @@ var robinhoodService = require('../services/robinhood.service');
 router.get('/getProfile', getProfile);
 router.get('/getAccount', getAccount);
 router.get('/getOrders', getOrders);
-router.get('/buyOrder', buyOrder);
 router.get('/getInstruments', getInstruments);
-
+router.post('/buyOrder', buyOrder);
 
 module.exports = router;
+
+/**
+ *
+ *  Get Routes For RobinHood Api Endpoint
+ *
+ */
 
 function getProfile(req, res){
   robinhoodService.getProfile()
@@ -45,22 +50,29 @@ function getOrders(req, res){
     });
 }
 
-function buyOrder(req, res){
-  robinhoodService.buyOrder()
-    .then(function (order) {
-      console.log(order);
-      res.send(order);
+function getInstruments(req, res){
+  robinhoodService.getInstruments(req)
+    .then(function (instruments) {
+      console.log(instruments);
+      res.send(instruments);
     })
     .catch(function (err) {
       res.status(400).send(err);
     });
 }
 
-function getInstruments(req, res){
-  robinhoodService.getInstruments()
-    .then(function (instruments) {
-      console.log(instruments);
-      res.send(instruments);
+
+/**
+ *
+ *  Post Routes For RobinHood Api Endpoint
+ *
+ */
+
+function buyOrder(req, res){
+  robinhoodService.buyOrder(req)
+    .then(function (order) {
+      console.log(order);
+      res.send(order);
     })
     .catch(function (err) {
       res.status(400).send(err);
