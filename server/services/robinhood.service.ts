@@ -27,7 +27,6 @@ function getProfile() {
     if(err){
       deferred.reject(err.name + ': ' + err.message);
     }else {
-      console.log("investment_profile");
       deferred.resolve((body));
     }
   });
@@ -40,7 +39,6 @@ function getAccount(){
     if(err){
       deferred.reject(err.name + ': ' + err.message);
     }else {
-      console.log("investment_account");
       deferred.resolve((body));
     }
   });
@@ -53,7 +51,6 @@ function getOrders(){
     if(err){
       deferred.reject(err.name + ': ' + err.message);
     }else {
-      console.log("Orders");
       deferred.resolve((body));
     }
   });
@@ -93,7 +90,6 @@ function buyOrder(req){
     if(err){
       deferred.reject(err.name + ': ' + err.message);
     }else {
-      console.log("Successfully executed a buy order");
       deferred.resolve((body));
     }
   });

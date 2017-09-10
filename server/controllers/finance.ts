@@ -14,7 +14,6 @@ function getStockData(req, res){
     let substrings: string[] = req.url.split('%26');
     req.url = substrings[0] + "&" + substrings[1];
   }
-  console.log(req.url);
   request(req.url, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       // returned value from google finance contains extra chars.

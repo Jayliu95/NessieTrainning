@@ -30,8 +30,10 @@ function getProfile(req, res){
 }
 
 function getAccount(req, res){
+  console.log("Getting Account");
   robinhoodService.getAccount()
     .then(function (account) {
+      console.log(account);
       res.send(account);
     })
     .catch(function (err) {

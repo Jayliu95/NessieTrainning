@@ -14,8 +14,8 @@ export class StockService {
   }
 
   getStocks(id: number){
-    return this._http.get('/api/v1/'+id+'/stocks', this.jwt()).map((response: Response) => response.json());
-  }
+  return this._http.get('/api/v1/'+id+'/stocks', this.jwt()).map((response: Response) => response.json());
+}
 
   getStock(id: number, stockSymbol: string){
     return this._http.get('/api/v1/'+id+'/stocks/'+stockSymbol, this.jwt()).map((response: Response) => response.json());

@@ -13,9 +13,7 @@ export class RobinhoodService {
   }
 
   getAccountInfo(){
-    console.log("service was called");
-    return this._http.get('/api/v1/robinhood/getAccount')
-      .map((response: Response) => response.json());
+    return this._http.get('/api/v1/robinhood/getAccount');
   }
 
 }

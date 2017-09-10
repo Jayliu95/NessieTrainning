@@ -34,7 +34,7 @@
                     <h5>${{portfolio.totalInvested}}<br /><small>Invested</small></h5>
                   </div>
                   <div class="col-md-4">
-                    <h5>${{portfolio.revenue}}<br /><small>Revenue</small></h5>
+                    <h5>${{accountDetail.cash}}<br /><small>Cash</small></h5>
                   </div>
                 </div>
               </div>
@@ -64,7 +64,7 @@
 
                       <div class="col-xs-3 text-right">
                         <button (click)="promptEditModal(stock)" class="btn btn-sm btn-success btn-icon"><i class="fa fa-edit"></i></button>
-                        <button (click)="deleteStock(stock)" class="btn btn-sm btn-danger btn-icon"><i class="fa fa-remove"></i></button>
+                        <button class="btn btn-sm btn-danger btn-icon"><i class="fa fa-remove"></i></button>
                       </div>
                     </div>
                   </li>
@@ -86,7 +86,7 @@
               </div>
             </div>
           </div>
-          <!-- Stock Management Section -->
+          <!-- Stock Management Section
           <div class="col-lg-8 col-md-7">
             <div class="card">
               <div class="header">
@@ -111,7 +111,7 @@
                     </div>
                     <div class="col-md-4">
                       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !purchasePrice.valid }">
-                        <label for="purchasePrice">Purchased Price</label>
+                          <label for="purchasePrice">Purchased Price</label>
                         <input type="number" class="form-control border-input" placeholder="$0.00" id="purchasePrice" name="purchasePrice" [(ngModel)]="model.purchasePrice" #purchasePrice="ngModel" required >
                         <div *ngIf="f.submitted && !purchasePrice.valid" class="help-block">Purchase Price is required</div>
                       </div>
@@ -126,7 +126,7 @@
               </div>
             </div>
           </div>
-
+-->
           <!-- Set push notification -->
           <!-- <div class="col-lg-8 col-md-7">
              <div class="card">

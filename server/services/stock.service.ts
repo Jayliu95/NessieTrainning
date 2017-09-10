@@ -22,7 +22,6 @@ function getAllStock(userId){
     _id: mongo.ObjectId(userId)
   }, function(err, user) {
     if (err) {
-      console.log("err");
       deferred.reject(err.name + ': ' + err.message);
     }
 
@@ -57,7 +56,6 @@ function getBySymbol(userId, stockId){
           stockObj.push(user['stockPortfolio'][index]);
         }
       }
-      console.log(stockObj);
       deferred.resolve(stockObj);
     }
   });
@@ -141,7 +139,6 @@ function editStock(req){
         {$set: set},
         function(err, doc){
           if(err) deferred.reject(err.name + ": " + err.message);
-          console.log(doc);
           deferred.resolve(doc);
         }
       )

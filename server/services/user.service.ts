@@ -68,7 +68,6 @@ function getById(_id) {
     if (err) deferred.reject(err.name + ': ' + err.message);
 
     if (user) {
-      console.log(user);
       // return user (without hashed password)
       deferred.resolve(_.omit(user, 'hash'));
     } else {
@@ -84,11 +83,9 @@ function getByName(name){
   var deferred = Q.defer();
   db.users.find(
     {name: new RegExp(name, "i")}, function(err, users){
-      console.log(err);
       if (err) deferred.reject(err.name + ': ' + err.message);
 
       if (users) {
-        console.log("user is: " + users);
         // return user (without hashed password)
         deferred.resolve(_.omit(users, 'hash'));
       } else {
@@ -101,7 +98,6 @@ function getByName(name){
 }
 function create(userParam) {
   var deferred = Q.defer();
-  console.log("Creating");
   // validation
   db.users.findOne(
     { username: userParam.username },
