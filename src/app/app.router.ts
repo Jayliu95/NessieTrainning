@@ -1,37 +1,28 @@
 import { Routes, RouterModule } from '@angular/router';
 import {ModuleWithProviders} from "@angular/core";
-import {DashboardComponent} from "./components/dashboard/index";
-import {UserProfileComponent} from "./components/user_profile/index";
-import {StockTableComponent} from "./components/stockTable/index";
 import {LoginComponent} from "./components/login/index";
 import {RegisterComponent} from "./components/register/index";
 import {AuthGuard} from "./guards/index";
-import {DonateComponent} from "./components/donate/index";
-import {NotificationComponent} from "./components/notification/notification.component";
-import {RobinHoodComponent} from "./components/robinhood/robinhood.component";
+import {AccountComponent} from "./components/account/account.component";
+import {PersonalWalletComponent} from "./components/personal_wallet/personal_wallet.component";
+import {SettingsComponent} from "./components/settings/settings.component";
 
 const appRoutes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: AccountComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
-    path: 'user',
-    component: UserProfileComponent,
+    path: 'personal_wallet',
+    component: PersonalWalletComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
-    path: 'stocktable',
-    component: StockTableComponent,
-    canActivate: [AuthGuard],
-    pathMatch: 'full'
-  },
-  {
-    path: 'notification',
-    component: NotificationComponent,
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
@@ -45,16 +36,6 @@ const appRoutes: Routes = [
     component: RegisterComponent,
     pathMatch: 'full'
   },
-  {
-    path: 'robinhood',
-    component: RobinHoodComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'donate',
-    component: DonateComponent,
-    pathMatch: 'full'
-  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
