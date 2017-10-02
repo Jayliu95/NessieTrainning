@@ -1,0 +1,130 @@
+<navbar></navbar>
+<!-- Create Purchase section -->
+<div class="container-fluid">
+  <div class="row main">
+    <div class="main-login main-center">
+      <h5 *ngIf="loaded">Create a purchase for {{account.nickname}}!</h5>
+      <form class="bookform form-inline row" (ngSubmit)="f.form.valid && createAccountPurchase()" #f="ngForm" novalidate>
+        <div *ngIf="f.submitted && purchased">
+            <span>
+            Purchase Created! Please reload page to see the change below.
+            </span>
+        </div>
+        <div class="row">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !merchant_id.valid }">
+            <label for="merchant_id" class="cols-sm-2 control-label">Purchase Merchant ID</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" step="any" class="form-control border-input" placeholder="merchant_id" id="merchant_id" name="merchant_id" [(ngModel)]="newPurchase.merchant_id" #merchant_id="ngModel" required >
+              </div>
+              <div *ngIf="f.submitted && !merchant_id.valid" class="help-block">Purchase Merchant ID is required</div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !medium.valid }">
+            >
+            <label for="medium" class="cols-sm-2 control-label">Purchase Medium</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" step="any" class="form-control border-input" placeholder="Medium" id="medium" name="medium" [(ngModel)]="newPurchase.medium" #medium="ngModel" required >
+              </div>
+              <div *ngIf="f.submitted && !medium.valid" class="help-block">Purchase medium is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !purchase_date.valid }">
+            <label for="purchase_date" class="cols-sm-2 control-label">Purchase date</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" step="any" class="form-control border-input" placeholder="00-00-0000" id="purchase_date" name="purchase_date" [(ngModel)]="newPurchase.purchase_date" #purchase_date="ngModel" required >
+              </div>
+              <div *ngIf="f.submitted && !purchase_date.valid" class="help-block">Purchase Date is required</div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !amount.valid }">
+            <label for="amount" class="cols-sm-2 control-label">Amount</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="number" min="0" step="any" class="form-control border-input" placeholder="0" id="amount" name="amount" [(ngModel)]="newPurchase.amount" #amount="ngModel" required >
+              </div>
+              <div *ngIf="f.submitted && !amount.valid" class="help-block">Amount is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+            <label for="description" class="cols-sm-2 control-label">Purchase Description</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text"  step="any" class="form-control border-input" placeholder="Description of purchase" id="description" name="description" [(ngModel)]="newPurchase.description" #description="ngModel" required >
+              </div>
+              <div *ngIf="f.submitted && !description.valid" class="help-block">Purchase Description is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cols-sm-12">
+            <button type="submit" class="form-control border-input btn btn-primary btn-block"><i class="icon-search"></i>Create Purchase</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <header class="container-fluid text-center head">
+        <div class="col-sm-12">
+          <h4 *ngIf="loaded" class="cta-title">List of Purchases for Account: {{id}}</h4>
+          <div *ngFor="let purchase of purchases; let purchaseIndex = index">
+            <div class="bs-calltoaction bs-calltoaction-default">
+              <div class="row">
+                <div class="col-md-6">
+                  <h1 class="cta-title">{{purchase.description}}</h1>
+                  <div class="cta-desc">
+                    <p>Purchase Medium: {{purchase.medium}}</p>
+                    <p>Purchase Date: {{purchase.purchase_date}}</p>
+                    <p>Purchase Amount: {{purchase.amount}}</p>
+                    <p>Purchase ID: {{purchase.merchant_id}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+    <div class="col-sm-6">
+      <header class="container-fluid text-center head">
+        <div class="col-sm-12">
+          <h4 *ngIf="loaded" class="cta-title">List of Merchants</h4>
+          <div *ngFor="let merchant of merchants; let merchantIndex = index">
+            <div class="bs-calltoaction bs-calltoaction-default">
+              <div class="row">
+                <div class="col-md-6">
+                  <h1 class="cta-title">{{merchant.name}}</h1>
+                  <div class="cta-desc">
+                    <p>Merchant ID: {{merchant._id}}</p>
+                    <p>Merchant Address: {{merchant.address.street_number}} {{merchant.address.street_name}}, {{merchant.address.city}}, {{ merchant.address.state}} {{merchant.address.zip}}</p>
+                    <p>Merchant Geocode: lat = {{merchant.geocode.lat}} lng = {{merchant.geocode.lng}}</p>
+                    <div>
+                      <label> Merchant Category: </label>
+                      <p style="color:#d43f3a" *ngFor="let category of merchant.category"><b>{{category}}</b></p>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+</div>

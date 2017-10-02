@@ -1,0 +1,127 @@
+<div class="container">
+  <header class="container-fluid text-center head">
+    <div class="col-sm-12">
+    <h2 *ngIf="loaded" class="cta-title">List of Accounts</h2>
+      <div *ngFor="let account of accounts; let accountIndex = index">
+        <div class="bs-calltoaction bs-calltoaction-{{account.type}}">
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="cta-title">{{account.nickname}}</h1>
+            <div class="cta-desc">
+              <p>Account ID: {{account.account_number}}</p>
+              <p>Account Type: {{account.type}}</p>
+              <p>Account Balance: {{account.balance}}</p>
+              <p>Account Rewards: {{account.rewards}}</p>
+              <p>ID: {{account._id}}</p>
+            </div>
+          </div>
+          <div class="col-md-3 cta-button">
+            <a routerLink="/account-bills/{{account._id}}" class="btn btn-lg btn-block btn-default">Bill Details!</a>
+            <a routerLink="/account-deposits/{{account._id}}" class="btn btn-lg btn-block btn-default">Deposit Details!</a>
+            <a routerLink="/account-purchases/{{account._id}}" class="btn btn-lg btn-block btn-default">Purchase Details!</a>
+            <button (click)="triggerUpdateAccount(accountIndex)"  class="btn btn-lg btn-block btn-warning"><i class="fa fa-edit"></i>Edit Account</button>
+            <button (click)="deleteAccount(account._id)"  class="btn btn-lg btn-block btn-danger"><i class="fa fa-edit"></i>Delete Account</button>
+          </div>
+          <!--Edit Form: hidden until edit event is triggered -->
+        </div>
+        <div class="row" *ngIf="account.toEdit">
+        <div class="main-login main-center">
+          <h5>Edit Account!</h5>
+          <form (ngSubmit)="f.form.valid && updateAccount(account._id, accountIndex)" #f="ngForm" novalidate>
+            <div class="form-group dropdown" >
+              <label id="type" for="type"class="cols-sm-2 control-label">Account Type</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <select [(ngModel)]="updatedAccountModel.type" name="type" class="form-control border-input" data-style="btn-white" readonly>
+                    <option *ngFor="let type of types" [ngValue]="type" > {{type}} </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nickname.valid }">
+              <label for="nickname" class="cols-sm-2 control-label">Nick Name</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <input type="text" step="any" class="form-control border-input" placeholder="{{updatedAccountModel.nickname}}" id="nickname" name="nickname" [(ngModel)]="updatedAccountModel.nickname" #nickname="ngModel" required >
+                </div>
+                <div *ngIf="f.submitted && !nickname.valid" class="help-block">Nick Name is required</div>
+              </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !rewards.valid }">
+              <label for="rewards" class="cols-sm-2 control-label">Reward</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <input type="number" min="1" step="any" class="form-control border-input" placeholder="{{updatedAccountModel.rewards}}" id="rewards" name="rewards" [(ngModel)]="updatedAccountModel.rewards" #rewards="ngModel" readonly >
+                </div>
+                <div *ngIf="f.submitted && !rewards.valid" class="help-block">Rewards Amount is required</div>
+              </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !balance.valid }">
+              <label for="balance" class="cols-sm-2 control-label">Balance</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <input type="number" min="0" step="any" class="form-control border-input" placeholder="{{updatedAccountModel.balance}}" id="balance" name="balance" [(ngModel)]="updatedAccountModel.balance" #balance="ngModel" readonly >
+                </div>
+                <div *ngIf="f.submitted && !balance.valid" class="help-block">Balance amount is required</div>
+              </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !account_number.valid }">
+              <label for="balance" class="cols-sm-2 control-label">Account Number</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <input type="number" min="0" step="any" class="form-control border-input" placeholder="{{updatedAccountModel.account_number}}" id="account_number" name="account_number" [(ngModel)]="updatedAccountModel.account_number" #account_number="ngModel" required >
+                </div>
+                <div *ngIf="f.submitted && !account_number.valid" class="help-block">Account Number is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="cols-sm-10">
+                <button type="submit" class="form-control border-input btn btn-primary btn-block"><i class="icon-search"></i>Update Account</button>
+                <button (click)="closeUpdateAccount(accountIndex)" class="form-control border-input btn btn-danger btn-block"><i class="icon-search"></i>Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </header>
+</div>
+<div class="container">
+    <header class="container-fluid text-center head">
+      <h2 class="cta-title">Search For An Account</h2>
+      <form>
+        <div class="form-group">
+          <input class="form-control" type="text" placeholder="Search Account..." [(ngModel)]="searchId" name="searchStr" (keydown)="searchAccount()">
+        </div>
+      </form>
+      <div class="col-sm-12">
+        <div *ngIf="searchId">
+          <div class="row">
+            <div *ngIf="loaded" class="col-md-12">
+              <div class="search-res well">
+                <h4>{{searchRes.nickname}}</h4>
+                <div>
+                  <span>Account Number: {{searchRes.account_number}}</span>
+                  <br>
+                  <span>Account Type: {{searchRes.type}}</span>
+                  <br>
+                  <span>Balance: {{searchRes.balance}}</span>
+                  <br>
+                  <span>Reward: {{searchRes.rewards}}</span>
+                  <br>
+                  <span>Account ID: {{searchRes._id}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>

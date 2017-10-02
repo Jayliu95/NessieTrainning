@@ -1,0 +1,98 @@
+<div class="container">
+  <header class="container-fluid text-center head">
+      <h2 style="color:black" *ngIf="loaded" class="cta-title">List of Customers</h2>
+      <div *ngFor="let customer of customers; let accountIndex = index">
+        <div class="bs-calltoaction bs-calltoaction-default">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="cta-title">{{customer._id}}</h1>
+              <div class="cta-desc">
+                <p>Customer Name: {{customer.first_name}} {{customer.last_name}}</p>
+                <p>Customer Address: {{customer.address.street_number}} {{customer.address.street_name}}, {{customer.address.city}}, {{customer.address.state}} {{customer.address.zip}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </header>
+</div>
+<div class="container-fluid">
+  <div class="row main">
+    <div class="main-login main-center">
+      <h5>Create An Account!</h5>
+      <form class="bookform form-inline row" (ngSubmit)="f.form.valid && createCustomerAccount()" #f="ngForm" novalidate>
+        <div *ngIf="f.submitted && customerCreated">
+          <span>
+            Account Created! Please reload page to see the change below.
+          </span>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !customerId.valid }">
+          <label for="customerId" class="cols-sm-2 control-label">Customer ID</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" step="any" class="form-control border-input" placeholder="Customer ID" id="customerId" name="customerId" [(ngModel)]="newAccount.customerId" #customerId="ngModel" required >
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !customerId.valid" class="help-block">CustomerId is required</div>
+        </div>
+        <div class="form-group dropdown" >
+          <label id="type" for="type"class="cols-sm-2 control-label">Account Type</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <select [(ngModel)]="newAccount.type" name="type" class="form-control border-input" placeholder="Select" data-style="btn-white">
+                <option *ngFor="let type of types" [ngValue]="type" > {{type}} </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nickname.valid }">
+          <label for="nickname" class="cols-sm-2 control-label">Nick Name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" step="any" class="form-control border-input" placeholder="John Doe" id="nickname" name="nickname" [(ngModel)]="newAccount.nickname" #nickname="ngModel" required >
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !nickname.valid" class="help-block">Nick Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !rewards.valid }">
+          <label for="rewards" class="cols-sm-2 control-label">Reward</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="number" min="1" step="any" class="form-control border-input" placeholder="0" id="rewards" name="rewards" [(ngModel)]="newAccount.rewards" #rewards="ngModel" required >
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !rewards.valid" class="help-block">Rewards Amount is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !balance.valid }">
+          <label for="balance" class="cols-sm-2 control-label">Balance</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="number" min="0" step="any" class="form-control border-input" placeholder="0" id="balance" name="balance" [(ngModel)]="newAccount.balance" #balance="ngModel" required >
+              </div>
+            </div>
+          <div *ngIf="f.submitted && !balance.valid" class="help-block">Balance amount is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !account_number.valid }">
+          <label for="balance" class="cols-sm-2 control-label">Account Number</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                 <input type="number" min="0" step="any" class="form-control border-input" placeholder="0" id="account_number" name="account_number" [(ngModel)]="newAccount.account_number" #account_number="ngModel" required >
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !account_number.valid" class="help-block">Account Number is required</div>
+        </div>
+        <div class="form-group">
+          <div class="cols-sm-10">
+            <button type="submit" class="form-control border-input btn btn-primary btn-block"><i class="icon-search"></i>Create Account</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

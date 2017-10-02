@@ -1,0 +1,33 @@
+<navbar></navbar>
+<div class="container">
+  <p *ngIf="!loaded"> Sorry.. This might take a few seconds for accounts to load!</p>
+  <header class="container-fluid text-center head">
+    <div class="col-sm-12">
+      <h2  class="cta-title">List of Accounts</h2>
+      <span>{{currentPageRangeStart}} -- {{currentPageRangeEnd}}</span>
+      <div class="text-center">
+        <ul class="pagination pagination-large">
+          <li *ngIf="currentPageRangeStart != 0"><a><button (click)="setPrevPage()"><<</button></a></li>
+          <li *ngIf="currentPageRangeStart == 0" class="disabled"><a class="disabled"><button class="disabled"><<</button></a></li>
+          <li class="disabled"><span>...</span></li>
+          <li><a><button (click)="setNextPage()">>></button></a></li>
+        </ul>
+      </div>
+      <div *ngFor="let account of accounts; let accountIndex = index">
+        <div class="bs-calltoaction bs-calltoaction-{{account.type}}">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="cta-title">{{account.nickname}}</h1>
+              <div class="cta-desc">
+                <p>Account Type: {{account.type}}</p>
+                <p>Account Balance: {{account.balance}}</p>
+                <p>Account Rewards: {{account.rewards}}</p>
+                <p>ID: {{account._id}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>

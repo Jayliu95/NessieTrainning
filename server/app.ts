@@ -5,7 +5,16 @@ import * as path from "path";
 
 console.log(__dirname);
 
-var user  = require('./controllers/user');
+let account = require('./controllers/account');
+let atm = require('./controllers/atm');
+let bill = require('./controllers/bill');
+let customer = require('./controllers/customer');
+let deposit = require('./controllers/deposit');
+let data = require('./controllers/data');
+let enterprise = require('./controllers/enterprise');
+let purchase = require('./controllers/purchase');
+let merchant = require('./controllers/merchant');
+
 const app: express.Application = express();
 
 app.disable("x-powered-by");
@@ -15,8 +24,16 @@ app.use(compression());
 app.use(urlencoded({ extended: true }));
 
 // api routes
+app.use("/api/v1/accounts", account);
+app.use("/api/v1/atms", atm);
+app.use("/api/v1/bills", bill);
+app.use("/api/v1/customers", customer);
+app.use("/api/v1/deposits", deposit);
+app.use("/api/v1/data", data);
+app.use("/api/v1/enterprises", enterprise);
+app.use("/api/v1/purchases", purchase);
+app.use("/api/v1/merchants", merchant);
 
-app.use('/api/v1/users', user);
 if (app.get("env") === "production") {
 
   // in production mode run application from dist folder

@@ -1,0 +1,42 @@
+<navbar></navbar>
+<div class="container-fluid">
+  <div class="row main">
+    <div class="main-login main-center">
+      <h5>Create An Account!</h5>
+      <form class="bookform form-inline row" (ngSubmit)="f.form.valid && deleteSelectedData()" #f="ngForm" novalidate>
+        <div *ngIf="f.submitted && deleted">
+          <span>
+            Data deleted! Please reload page to see the change below.
+          </span>
+        </div>
+        <div *ngIf="f.submitted && !deleted">
+          <span>
+            <p style="color:red">{{errMsg}}</p>
+          </span>
+        </div>
+
+        <div class="row">
+
+          <div class="form-group dropdown" >
+          <label id="type" for="type"class="cols-sm-2 control-label">Account Type</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <select [(ngModel)]="typeSelected" name="type" class="form-control border-input" placeholder="Select" data-style="btn-white">
+                <option *ngFor="let type of types" [ngValue]="type" > {{type}} </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="cols-sm-10">
+              <button type="submit" class="form-control border-input btn btn-danger btn-block"><i class="icon-search"></i>Delete Data!</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

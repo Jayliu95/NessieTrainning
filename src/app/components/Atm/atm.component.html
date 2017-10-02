@@ -1,0 +1,30 @@
+<navbar></navbar>
+<div class="container">
+  <header class="container-fluid text-center head">
+    <div class="col-sm-12">
+      <h2  class="cta-title">List of Atms</h2>
+      <p *ngIf="!loaded"> Sorry.. This might take a few seconds for accounts to load!</p>
+      <span>Page: {{currPage}}</span>
+      <div class="text-center">
+        <ul class="pagination pagination-large">
+          <li *ngIf="currPage != 0"><a><button (click)="setPrevPage()"><<</button></a></li>
+          <li *ngIf="currPage == 0" class="disabled"><a class="disabled"><button class="disabled"><<</button></a></li>
+          <li class="disabled"><span>...</span></li>
+          <li><a><button (click)="setNextPage()">>></button></a></li>
+        </ul>
+      </div>
+      <div *ngFor="let atm of atms; let atmIndex = index">
+        <div class="bs-calltoaction bs-calltoaction-default">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="cta-title">{{atm.name}}</h1>
+              <div class="cta-desc">
+                <p>ID: {{atm._id}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>

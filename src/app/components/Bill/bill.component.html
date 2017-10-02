@@ -1,0 +1,111 @@
+<navbar></navbar>
+<!-- Create Bill section -->
+<div class="container-fluid">
+  <div class="row main">
+    <div class="main-login main-center">
+      <h5>Create An Account!</h5>
+      <form class="bookform form-inline row" (ngSubmit)="f.form.valid && createAccountBill()" #f="ngForm" novalidate>
+        <div *ngIf="f.submitted && billCreated">
+          <span>
+           Bill Created! Please reload page to see the change below.
+          </span>
+        </div>
+        <div class="row">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid }">
+            <label for="status" class="cols-sm-2 control-label">Bill Status</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" step="any" class="form-control border-input" placeholder="Status" id="status" name="status" [(ngModel)]="newBill.status" #status="ngModel" required >
+              </div>
+            </div>
+            <div *ngIf="f.submitted && !status.valid" class="help-block">Bill Status is required</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !payee.valid }"> >
+          <label for="payee"class="cols-sm-2 control-label">Bill Payee</label>
+          <div class="cols-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="text" step="any" class="form-control border-input" placeholder="Payee" id="payee" name="payee" [(ngModel)]="newBill.payee" #payee="ngModel" required >
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !payee.valid" class="help-block">Bill Payee is required</div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nickname.valid }">
+          <label for="nickname" class="cols-sm-2 control-label">Bill Nickname</label>
+          <div class="cols-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="text" step="any" class="form-control border-input" placeholder="Bill 123456" id="nickname" name="nickname" [(ngModel)]="newBill.nickname" #nickname="ngModel" required >
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !nickname.valid" class="help-block">Bill Nickname is required</div>
+        </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !payment_date.valid }">
+          <label for="payment_date" class="cols-sm-2 control-label">Payment Date</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="text"  step="any" class="form-control border-input" placeholder="00-00-000" id="payment_date" name="payment_date" [(ngModel)]="newBill.payment_date" #payment_date="ngModel" required >
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !payment_date.valid" class="help-block">Payment Date is required</div>
+        </div>
+        </div>
+       <div class="row">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !recurring_date.valid }">
+          <label for="recurring_date" class="cols-sm-2 control-label">Recurring Date</label>
+          <div class="cols-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="number" min="0" step="any" class="form-control border-input" placeholder="0" id="recurring_date" name="recurring_date" [(ngModel)]="newBill.recurring_date" #recurring_date="ngModel" required >
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !recurring_date.valid" class="help-block">Recurring Date is required</div>
+        </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !payment_amount.valid }">
+          <label for="payment_amount" class="cols-sm-2 control-label">Payment Amount</label>
+          <div class="cols-sm-6">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="number" min="0" step="any" class="form-control border-input" placeholder="0" id="payment_amount" name="payment_amount" [(ngModel)]="newBill.payment_amount" #payment_amount="ngModel" required >
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !payment_amount.valid" class="help-block">Payment Amount is required</div>
+        </div>
+       </div>
+        <div class="row">
+          <div class="cols-sm-12">
+            <button type="submit" class="form-control border-input btn btn-primary btn-block"><i class="icon-search"></i>Create Bill</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <header class="container-fluid text-center head">
+    <div class="col-sm-12">
+      <h2 *ngIf="loaded" class="cta-title">List of Bills for Account: {{id}}</h2>
+      <div *ngFor="let bill of bills; let billIndex = index">
+        <div class="bs-calltoaction bs-calltoaction-{{bill.status}}">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="cta-title">{{bill.nickname}}</h1>
+              <div class="cta-desc">
+                <p>Bill Payee: {{bill.payee}}</p>
+                <p>Bill Payment Date: {{bill.payment_date}}</p>
+                <p>Bill Recurring Date: {{bill.recurring_date}}</p>
+                <p>Bill Payment Amount: {{bill.payment_amount}}</p>
+                <p>Bill Id: {{bill._id}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>

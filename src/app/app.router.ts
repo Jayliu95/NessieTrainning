@@ -1,41 +1,44 @@
 import { Routes, RouterModule } from '@angular/router';
 import {ModuleWithProviders} from "@angular/core";
-import {LoginComponent} from "./components/login/index";
-import {RegisterComponent} from "./components/register/index";
-import {AuthGuard} from "./guards/index";
-import {AccountComponent} from "./components/account/account.component";
-import {PersonalWalletComponent} from "./components/personal_wallet/personal_wallet.component";
-import {SettingsComponent} from "./components/settings/settings.component";
+import {DashboardComponent} from "./components/Dashboard/index";
+import {BillComponent} from "./components/Bill/bill.component";
+import {PurchaseComponent} from "./components/Purchase/purchase.component";
+import {DepositComponent} from "./components/Deposit/deposit.component";
+import {EnterpriseComponent} from "./components/Enterprise/enterprise.component";
+import {DataComponent} from "./components/Data/data.component";
+import {AtmComponent} from "./components/Atm/atm.component";
+
 
 const appRoutes: Routes = [
   {
     path: '',
-    component: AccountComponent,
-    canActivate: [AuthGuard],
+    component: DashboardComponent,
     pathMatch: 'full'
   },
   {
-    path: 'personal_wallet',
-    component: PersonalWalletComponent,
-    canActivate: [AuthGuard],
-    pathMatch: 'full'
+    path: 'enterprise',
+    component: EnterpriseComponent
+  },
+  { path: 'account-bills/:id',
+    component: BillComponent,
   },
   {
-    path: 'settings',
-    component: SettingsComponent,
-    canActivate: [AuthGuard],
-    pathMatch: 'full'
+    path: 'account-deposits/:id',
+    component: DepositComponent
   },
   {
-    path: 'login',
-    component: LoginComponent,
-    pathMatch: 'full'
+    path: 'account-purchases/:id',
+    component: PurchaseComponent
   },
   {
-    path: 'register',
-    component: RegisterComponent,
-    pathMatch: 'full'
+    path: 'data',
+    component: DataComponent
   },
+  {
+    path:'atms',
+    component: AtmComponent
+  },
+  { path: '**', redirectTo: '/', pathMatch: 'full' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

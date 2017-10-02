@@ -4,31 +4,30 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 
-import { AppComponent }  from './app.component';
-import {NavbarComponent} from "./components/navbar/index";
-import {RegisterComponent} from "./components/register/index";
-import {LoginComponent} from "./components/login/index";
+import {AccountComponent} from "./components/Account/account.component";
+import {DashboardComponent} from "./components/Dashboard/index";
+import {CustomerComponent} from "./components/Customer/index";
 
+import {CustomerService} from "./services/customer/index";
 import {
-  GoogleFinanceService,
-  AuthenticationService,
-  UserService,
-  AlertService,
-  StockService
-} from "./services/index";
+  AccountService
+} from "./services/account/index";
+
 
 import {routing} from "./app.router";
-import {AppConfig} from "./app.config";
 import {RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
-import {AuthGuard} from "./guards/auth.guard";
-import {FooterComponent} from "./components/footer/index";
-import {NavbarExtendedComponent} from "./components/navbarExtended/index";
-import {RobinhoodService} from "./services/robinhood.service";
-import {AccountComponent} from "./components/account/account.component";
-import {PersonalWalletComponent} from "./components/personal_wallet/personal_wallet.component";
-import {SettingsComponent} from "./components/settings/settings.component";
-
+import {AppComponent} from "./app.component";
+import {BillComponent} from "./components/Bill/bill.component";
+import {PurchaseComponent} from "./components/Purchase/purchase.component";
+import {MerchantService} from "./services/merchant/merchant";
+import {DepositComponent} from "./components/Deposit/deposit.component";
+import {EnterpriseComponent} from "./components/Enterprise/enterprise.component";
+import {NavbarComponent} from "./components/Navbar/navbar.component";
+import {DataComponent} from "./components/Data/data.component";
+import {DataService} from "./services/data/data.service";
+import {AtmComponent} from "./components/Atm/atm.component";
+import {AtmService} from "./services/atm/atm.service";
 
 
 @NgModule({
@@ -41,25 +40,24 @@ import {SettingsComponent} from "./components/settings/settings.component";
     routing,
   ],
   providers: [
-    AppConfig,
-    GoogleFinanceService,
-    AuthenticationService,
-    UserService,
-    StockService,
-    AuthGuard,
-    AlertService,
-    RobinhoodService
+    AccountService,
+    AtmService,
+    CustomerService,
+    DataService,
+    MerchantService
   ],
   declarations:
     [ AppComponent,
       AccountComponent,
-      PersonalWalletComponent,
-      SettingsComponent,
-      RegisterComponent,
-      LoginComponent,
+      AtmComponent,
+      BillComponent,
+      CustomerComponent,
+      DashboardComponent,
+      DataComponent,
+      DepositComponent,
+      EnterpriseComponent,
       NavbarComponent,
-      NavbarExtendedComponent,
-      FooterComponent,
+      PurchaseComponent
     ],
   bootstrap:    [ AppComponent ]
 })

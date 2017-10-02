@@ -1,5 +1,0 @@
-export * from './googleFinance.service';
-export * from './authentication.service';
-export * from './user.service';
-export * from './stock.service';
-export * from './alert.service';

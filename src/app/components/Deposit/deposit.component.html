@@ -1,0 +1,92 @@
+<navbar></navbar>
+<!-- Create Deposit section -->
+<div class="container-fluid">
+  <div class="row main">
+    <div class="main-login main-center">
+      <h5 *ngIf="loaded">Create a deposit for {{account.nickname}}!</h5>
+      <form class="bookform form-inline row" (ngSubmit)="f.form.valid && createAccountDeposit()" #f="ngForm" novalidate>
+        <div *ngIf="f.submitted && deposited">
+            <span>
+            Deposit Created! Please reload page to see the change below.
+            </span>
+        </div>
+        <div class="row">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !medium.valid }">
+            <label for="medium" class="cols-sm-2 control-label">Deposit Medium</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" step="any" class="form-control border-input" placeholder="Medium" id="medium" name="medium" [(ngModel)]="newDeposit.medium" #medium="ngModel" required >
+              </div>
+              <div *ngIf="f.submitted && !medium.valid" class="help-block">Deposit medium is required</div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !transaction_date.valid }">
+            <label for="transaction_date" class="cols-sm-2 control-label">Transaction Date</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text" step="any" class="form-control border-input" placeholder="00-00-0000" id="transaction_date" name="transaction_date" [(ngModel)]="newDeposit.transaction_date" #transaction_date="ngModel" required >
+              </div>
+              <div *ngIf="f.submitted && !transaction_date.valid" class="help-block">Deposit Transaction Date is required</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !amount.valid }">
+            <label for="amount" class="cols-sm-2 control-label">Amount</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="number" min="0" step="any" class="form-control border-input" placeholder="0" id="amount" name="amount" [(ngModel)]="newDeposit.amount" #amount="ngModel" required >
+              </div>
+              <div *ngIf="f.submitted && !amount.valid" class="help-block">Amount is required</div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+            <label for="description" class="cols-sm-2 control-label">Deposit Description</label>
+            <div class="cols-sm-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                <input type="text"  step="any" class="form-control border-input" placeholder="Description of deposit" id="description" name="description" [(ngModel)]="newDeposit.description" #description="ngModel" required >
+              </div>
+              <div *ngIf="f.submitted && !description.valid" class="help-block">Deposit Description is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cols-sm-12">
+            <button type="submit" class="form-control border-input btn btn-primary btn-block"><i class="icon-search"></i>Create Deposit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <header class="container-fluid text-center head">
+        <div class="col-sm-12">
+          <h4 *ngIf="loaded" class="cta-title">List of Deposits for Account: {{id}}</h4>
+          <div *ngFor="let deposit of deposits; let depositIndex = index">
+            <div class="bs-calltoaction bs-calltoaction-default">
+              <div class="row">
+                <div class="col-md-6">
+                  <h1 class="cta-title">{{deposit.description}}</h1>
+                  <div class="cta-desc">
+                    <p>Deposit Medium: {{deposit.medium}}</p>
+                    <p>Deposit Date: {{deposit.transaction_date}}</p>
+                    <p>Deposit Amount: {{deposit.amount}}</p>
+                    <p>Deposit Transaction Date: {{deposit.transaction_date}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+  </div>
+</div>

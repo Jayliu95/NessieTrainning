@@ -1,0 +1,42 @@
+<div class='container-fluid'>
+  <nav class="navbar navbar-default"  style="width: 100%;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav" id="navPrincipal">
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/" >
+              <i class="ti-panel"></i>
+              <p>Customer Accounts</p>
+            </a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/atms" >
+              <i class="ti-panel"></i>
+              <p>Atm</p>
+            </a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/enterprise" >
+              <i class="ti-panel"></i>
+              <p>Enterprise Accounts</p>
+            </a>
+          </li>
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/data" >
+              <i class="ti-panel"></i>
+              <p>Data</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
