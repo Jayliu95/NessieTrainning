@@ -20,7 +20,7 @@ git clone git@github.com:Jayliu95/NessieTrainning.git
 npm install
 
 -Make sure you have typescript
-npm install typescript@'>=2.1.0 <2.4.0'
+npm install typescript@'>=2.1.0 <2.4.0' -g
 
 -Start app
 npm start
