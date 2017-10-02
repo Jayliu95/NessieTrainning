@@ -11,6 +11,11 @@
 ```bash
 -Make sure you have Node (6.10.3+) and npm: https://nodejs.org/en/download/package-manager/
 
+-Clone Project
+git clone git@github.com:Jayliu95/NessieTrainning.git
+
+-Navigate to project root folder
+
 -Install dependencies
 npm install
 
