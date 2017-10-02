@@ -15,7 +15,6 @@ app.use(compression());
 app.use(urlencoded({ extended: true }));
 
 // api routes
-app.use('/', index);
 
 if (app.get("env") === "production") {
 
