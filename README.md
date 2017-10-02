@@ -7,8 +7,21 @@
 - Webpack ( angular-cli )
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+## Build Steps
+```bash
+-Make sure you have Node (6.10.3+) and npm: https://nodejs.org/en/download/package-manager/
 
-## Documentation (Testing App)
+-Install dependencies
+npm install
+
+-Make sure you have typescript
+npm install typescript@'>=2.1.0 <2.4.0'
+
+-Start app
+npm start
+
+
+## Documentation 
 Navigation can be done using the navbar
 
 - Uses the GET /atms endpoint. Please note it is paginated, and your submission must query ATMs multiple times using the paging object.
