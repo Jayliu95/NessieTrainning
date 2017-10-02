@@ -5,7 +5,7 @@ import * as path from "path";
 
 console.log(__dirname);
 
-var index = require('./controllers/index');
+var user  = require('./controllers/user');
 const app: express.Application = express();
 
 app.disable("x-powered-by");
@@ -16,6 +16,7 @@ app.use(urlencoded({ extended: true }));
 
 // api routes
 
+app.use('/api/v1/users', user);
 if (app.get("env") === "production") {
 
   // in production mode run application from dist folder
